@@ -1,9 +1,9 @@
-  function game(){
+const game = () => {
   let pScore = 0;
   let cScore = 0;
 
   //Start the Game
-  function startGame(){
+  const startGame = () => {
     const playBtn = document.querySelector(".intro button");
     const introScreen = document.querySelector(".intro");
     const match = document.querySelector(".match");
@@ -13,9 +13,8 @@
       match.classList.add("fadeIn");
     });
   };
-  
   //Play Match
-  function playMatch(){
+  const playMatch = () => {
     const options = document.querySelectorAll(".options button");
     const playerHand = document.querySelector(".player-hand");
     const computerHand = document.querySelector(".computer-hand");
@@ -26,7 +25,6 @@
         this.style.animation = "";
       });
     });
-
     //Computer Options
     const computerOptions = ["rock", "paper", "scissors"];
 
@@ -37,14 +35,12 @@
         const computerChoice = computerOptions[computerNumber];
 
         setTimeout(() => {
-          //Compare hands
+          //Here is where we call compare hands
           compareHands(this.textContent, computerChoice);
-
           //Update Images
           playerHand.src = `./assets/${this.textContent}.png`;
           computerHand.src = `./assets/${computerChoice}.png`;
         }, 2000);
-
         //Animation
         playerHand.style.animation = "shakePlayer 2s ease";
         computerHand.style.animation = "shakeComputer 2s ease";
@@ -52,23 +48,21 @@
     });
   };
 
-  function updateScore(){
+  const updateScore = () => {
     const playerScore = document.querySelector(".player-score p");
     const computerScore = document.querySelector(".computer-score p");
     playerScore.textContent = pScore;
     computerScore.textContent = cScore;
   };
 
-  function compareHands(playerChoice, computerChoice){
+  const compareHands = (playerChoice, computerChoice) => {
     //Update Text
     const winner = document.querySelector(".winner");
-
     //Checking for a tie
     if (playerChoice === computerChoice) {
       winner.textContent = "It is a tie";
       return;
     }
-
     //Check for Rock
     if (playerChoice === "rock") {
       if (computerChoice === "scissors") {
@@ -83,7 +77,6 @@
         return;
       }
     }
-
     //Check for Paper
     if (playerChoice === "paper") {
       if (computerChoice === "scissors") {
@@ -98,7 +91,6 @@
         return;
       }
     }
-
     //Check for Scissors
     if (playerChoice === "scissors") {
       if (computerChoice === "rock") {
@@ -115,10 +107,10 @@
     }
   };
 
-  //Calling all inner functions
+  //Is call all the inner function
   startGame();
   playMatch();
 };
 
-//Start the game
+//start the game function
 game();
